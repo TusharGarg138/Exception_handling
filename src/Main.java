@@ -75,22 +75,23 @@ class Main{
             checkName("Tushar garg");// it checks not empty, non-numeric, should be more than 2 character
 
             String batch = "2023-2027";
+
             checkBatch(batch);// correct format , duration 4 year , correct yaer input
 
-            checkBranch("AIML");
+            checkBranch("AIML");// empty or not , only alphabets
 
-            checkPRN("23070126138",batch);
+            checkPRN("23070126138",batch);// lenght of prn, only digits, batch year should be equal to prn year
 
         }catch(NameException e){
             System.out.println(e);
 
-        } catch (BatchException e) {
+        } catch(BatchException e) {
             System.out.println(e);
         }
         catch(BranchException e){
             System.out.println(e);
         }
-        catch (PrnException e){
+        catch(PrnException e){
             System.out.println(e);
         }
     }
