@@ -3,7 +3,9 @@ class Main{
         if(name==null || name.trim().isEmpty()){
             throw new NameException("invalid name .");
         }
-
+        else if(name.matches(".*\\d.*")){
+            throw new NameException("invalid name .");
+        }
         else{
             System.out.println("Name Accepted "+ name);
         }
