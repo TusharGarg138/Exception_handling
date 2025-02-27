@@ -44,13 +44,42 @@ class Main{
         }
     }
 
+    public static void checkPRN(String prn, String batch) throws PrnException{
+
+        String[] years = batch.split("-"); // changing the string into integer
+        int start = Integer.parseInt(years[0]);
+        int end = Integer.parseInt(years[1]);
+
+        int prnYear = Integer.parseInt(prn.substring(0, 2));// extracting the year of student from prn
+        int Year = 2000 + prnYear;
+
+
+        if(prn.length()!= 11){
+            throw new PrnException("PRN should be 11 digits");// it checks the length that PRN should be 11 digits
+
+        }
+        else if(!prn.matches("\\d{11}")){
+            throw new PrnException("Only digits are allowed"); // In PRN only digits are allowed
+        }
+        else if (Year != start) {
+            throw new PrnException("PRN year (" + Year + ") does not match batch starting year (" + start + ").");
+            // checking that PRN year and batch are same or not
+        }
+        else{
+            System.out.println("PRN Accepted: "+ prn);
+        }
+    }
+
     public static void main(String args[]){
         try{
             checkName("Tushar garg");// it checks not empty, non-numeric, should be more than 2 character
 
-            checkBatch("2023-2027");// correct format , duration 4 year , correct yaer input
+            String batch = "2023-2027";
+            checkBatch(batch);// correct format , duration 4 year , correct yaer input
 
             checkBranch("AIML");
+
+            checkPRN("23070126138",batch);
 
         }catch(NameException e){
             System.out.println(e);
@@ -59,6 +88,9 @@ class Main{
             System.out.println(e);
         }
         catch(BranchException e){
+            System.out.println(e);
+        }
+        catch (PrnException e){
             System.out.println(e);
         }
     }
