@@ -14,36 +14,51 @@ class Main{
         }
     }
 
-    public static void checkBatch(String batch) throws BatchException{
+    public static void checkBatch(String batch) throws BatchException {
         String[] years = batch.split("-"); // changing the string into integer
         int start = Integer.parseInt(years[0]);
         int end = Integer.parseInt(years[1]);
 
-        if (!batch.matches("\\d{4}-\\d{4}")){// cheching if the batch is in correct format or not
+        if (!batch.matches("\\d{4}-\\d{4}")) {// cheching if the batch is in correct format or not
             throw new BatchException("Invalid format!!!");
-        }
 
-        else if (start >= end) { // starting year should not be greater than end year
+        } else if (start >= end) { // starting year should not be greater than end year
             throw new BatchException("Start year must be before end year.");
-        }
 
-        else if (end - start != 4) {// degree must of 4 years
+        } else if (end - start != 4) {// degree must of 4 years
             throw new BatchException("Batch duration must be exactly 4 years.");
         }
-
-        else{
-            System.out.println("batch Accepted: "+ batch);
+        else {
+            System.out.println("batch Accepted: " + batch);
         }
     }
+    public static void checkBranch(String branch) throws BranchException  {
+        if (branch == null || branch.trim().isEmpty()) {
+            throw new BranchException("Branch cannot be empty.");  // Throw exception if empty
+        }
+        else if (!branch.matches("[a-zA-Z]+")) {
+            throw new BranchException("Branch should only contain alphabets."); // checks if branch is only alphabet
+        }
+        else{
+            System.out.println("Branch is: " + branch);
+        }
+    }
+
     public static void main(String args[]){
         try{
             checkName("Tushar garg");// it checks not empty, non-numeric, should be more than 2 character
-            checkBatch("2023-2027"); // correct format , duration 4 year , correct yaer input
+
+            checkBatch("2023-2027");// correct format , duration 4 year , correct yaer input
+
+            checkBranch("AIML");
 
         }catch(NameException e){
             System.out.println(e);
 
         } catch (BatchException e) {
+            System.out.println(e);
+        }
+        catch(BranchException e){
             System.out.println(e);
         }
     }
