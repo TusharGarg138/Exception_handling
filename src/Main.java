@@ -4,7 +4,10 @@ class Main{
             throw new NameException("invalid name .");
         }
         else if(name.matches(".*\\d.*")){
-            throw new NameException("invalid name .");
+            throw new NameException("Name should not contain numbers only String");
+        }
+        else if (name.trim().length() < 2) {
+            throw new NameException("Name must be at least 2 characters long.");
         }
         else{
             System.out.println("Name Accepted "+ name);
@@ -13,7 +16,7 @@ class Main{
 
     public static void main(String args[]){
         try{
-            checkName("123"); // empty name column done
+            checkName("Tushar garg"); // it checks not empty, non-numeric, should be more than 2 character
         }catch(NameException e){
             System.out.println(e);
         }
